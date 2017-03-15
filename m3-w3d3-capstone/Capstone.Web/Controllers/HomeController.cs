@@ -10,9 +10,35 @@ namespace Capstone.Web.Controllers
     {
 
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Home()
         {
-            return View("Index");
+            return View();
+        }
+
+        //GET: 
+        public ActionResult DetailPage()
+        {
+            return View();
+        }
+
+
+        //GET: 
+        public ActionResult DailySurvey()
+        {
+            return View();
+        }
+
+        //GET: 
+        public ActionResult SurveyResults()
+        {
+            return View();
+        }
+
+
+        //GET: 
+        public ActionResult FiveDayForecast()
+        {
+            return View();
         }
     }
 }
