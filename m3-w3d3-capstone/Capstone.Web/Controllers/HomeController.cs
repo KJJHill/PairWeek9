@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Configuration;
+using Capstone.Web.DAL;
+using Capstone.Web.Models;
 
 namespace Capstone.Web.Controllers
 {
     public class HomeController : Controller
     {
+        string connectionString = ConfigurationManager.ConnectionStrings["CapstoneDatabase"].ConnectionString;
 
         // GET: Home
         public ActionResult Home()

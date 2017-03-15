@@ -9,7 +9,7 @@ namespace Capstone.Web.DAL
 {
     interface IParkDAL
     {
-        List<Park> GetParkDetails(Park park);
+        List<Park> GetParkDetails(string parkCode);
 
         List<Park> GetAllParks();
 
