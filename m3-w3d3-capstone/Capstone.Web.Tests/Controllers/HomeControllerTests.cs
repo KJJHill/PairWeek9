@@ -19,10 +19,10 @@ namespace Capstone.Web.Controllers.Tests
             HomeController controller = new HomeController();
 
             //Act
-            ViewResult result = controller.Index() as ViewResult;
+            ViewResult result = controller.Home() as ViewResult;
 
             //Assert
-            Assert.AreEqual("Index", result.ViewName);
+            Assert.AreEqual("Home", result.ViewName);
         }
     }
 }
