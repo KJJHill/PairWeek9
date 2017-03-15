@@ -9,7 +9,7 @@ namespace Capstone.Web.DAL
 {
     interface IForecastDAL
     {
-       List<Forecast> GetForecasts();
+       List<Forecast> GetForecasts(string parkCode);
         
     }
 }
