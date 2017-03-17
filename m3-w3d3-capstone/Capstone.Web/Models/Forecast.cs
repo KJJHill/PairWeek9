@@ -12,6 +12,7 @@ namespace Capstone.Web.Models
         public int LowTemperature { get; set; }
         public int HighTemperature { get; set; }
         public string WeatherForecast { get; set; }
-
+        public string ImagePath { get; set; }
+        public string ForecastAdvice { get; set; }
     }
 }

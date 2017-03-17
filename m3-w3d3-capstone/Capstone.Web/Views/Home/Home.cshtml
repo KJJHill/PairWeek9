@@ -1,9 +1,28 @@
-﻿
+﻿@using Capstone.Web.Models;
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Home</h2>
+@model List<Park>
+<h2>National Parks</h2>
 
 @Html.ActionLink("Click on Forecast", "FiveDayForecast", "Home")
+
+@Html.ActionLink("Survey Results", "SurveyResults", "Home")
+
+<table>
+  @foreach (Park p in Model)
+  {
+    
+      string imagesource = "/Content/img/parkimages/"+ p.ParkCode+ ".jpg";
+      <tr>
+        <td><a href="@Url.Action("DetailPage", new { parkCode = p.ParkCode })"><img src=@imagesource /></a></td>
+        <td>
+            <ul style="list-style: none">
+                <li><h2>@Html.ActionLink(@p.ParkName+", "+@p.State, "DetailPage",new { parkCode = p.ParkCode })</h2></li>
+                <li>@p.Description</li>
+            </ul>
+        </td>
+    </tr>
+  }
+</table>

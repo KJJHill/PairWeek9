@@ -1,4 +1,5 @@
-﻿
+﻿@using Capstone.Web.Models;
+@model List<Park>
 @{
     ViewBag.Title = "DailySurvey";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +7,15 @@
 
 <h2>DailySurvey</h2>
 
+@using (Html.BeginForm("SurveyResults","Home"))
+{
+
+    Html.Label("Favorite Park");
+    //Html.DropDownList("FavoritePark", m => m.ParkName);
+    <select name="activitylevel">
+        <option value="inactve">Inactive</option>
+        <option value= "sedentary">Sedentary</option>
+        <option value="active">Active</option>
+        <option value="extremelyactive">Extremely Active</option>
+    </select>
+}

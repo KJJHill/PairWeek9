@@ -1,8 +1,46 @@
-﻿
+﻿@using Capstone.Web.Models;
+
+@model Park
 @{
     ViewBag.Title = "DetailPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string imagesource = "/Content/img/parkimages/" + Model.ParkCode + ".jpg";
 }
 
 <h2>DetailPage</h2>
 
+<table>
+    <tr>
+        <td><img src=@imagesource /></td>
+        <td>
+            <ul style="list-style: none">
+                <li><h2>@Html.ActionLink(@Model.ParkName + ", " + @Model.State, "DetailPage", "Home", new { parkCode = Model.ParkCode })</h2></li>
+                <li>@Model.Description</li>
+                <li></li>
+                <li>Park Acreage: @Model.Acreage, Park Elevation: @Model.Elevation, Miles of Trail: @Model.MilesOfTrail</li>
+                <li>Number of Campsites: @Model.NumberOfCampsite, Year Founded: @Model.YearFounded, Annual Visitors: @Model.AnnualVisitors</li>
+                <li>Climate: @Model.Climate, Entry $: @Model.EntryFee, Number of Species: @Model.NumberOfAnimalSpecies</li>
+                <li></li>
+                <li><strong>Quote:</strong> @Model.Quote ~ @Model.QuoteSource</li>
+
+            </ul>
+        </td>
+    </tr>
+
+</table>
+
+<table>
+
+    @foreach (Forecast f in Model.FiveDayForecasts)
+    {
+        <tr>
+            <td>Day @f.DayNumber</td>
+            <td><img src="@f.ImagePath"/></td>
+            <td>Low @f.LowTemperature / High @f.HighTemperature</td>
+            <td></td>
+            <td>@f.ForecastAdvice</td>
+        </tr>
+    }
+
+
+</table>
