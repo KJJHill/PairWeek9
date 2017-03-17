@@ -128,7 +128,7 @@ section img {
     }
 
 #main-content {
-    background-color: white;
+    background-color: #cbb53c;
     color: black;
     border-radius: 10px;
     /* width: 85%; */
@@ -200,7 +200,7 @@ section.centeredPanel {
     vertical-align: top;
     
     min-height: 450px;
-    background-color: #FFF;
+    background-color: #cbb53c;
     border-radius: 7px;
     margin-left: 60px;
     margin-top: 60px;

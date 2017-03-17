@@ -14,9 +14,9 @@ namespace Capstone.Web.DAL
 
         private string connectionString;
 
-        public SurveySQLDAL(string databaseconnectionString)
+        public SurveySQLDAL(string databaseConnectionString)
         {
-            connectionString = databaseconnectionString;
+            connectionString = databaseConnectionString;
         }
 
         public List<Survey> GetAllSurveys()

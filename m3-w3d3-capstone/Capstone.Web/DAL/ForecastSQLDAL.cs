@@ -12,9 +12,9 @@ namespace Capstone.Web.DAL
 
         private string connectionString;
         private string SQL_GetAllForecasts = "Select * from weather where parkCode = @parkCode;";
-        public ForecastSQLDAL(string databaseconnectionString)
+        public ForecastSQLDAL(string databaseConnectionString)
         {
-            connectionString = databaseconnectionString;
+            connectionString = databaseConnectionString;
         }
 
         public List<Forecast> GetForecasts(string parkCode)

@@ -1,8 +1,17 @@
-﻿
+﻿@using Capstone.Web.Models;
+
 @{
     ViewBag.Title = "FiveDayForecast";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model List<Forecast>
+
 <h2>FiveDayForecast</h2>
 
+@foreach (Forecast f in Model)
+{
+    <p>@f.DayNumber</p>
+    <p>@f.WeatherForecast</p>
+
+}

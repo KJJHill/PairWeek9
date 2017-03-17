@@ -11,7 +11,7 @@ namespace Capstone.Web.Controllers
 {
     public class HomeController : Controller
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["CapstoneDatabase"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["KHCapstoneDatabase"].ConnectionString;
 
         // GET: Home
         public ActionResult Home()
@@ -42,7 +42,13 @@ namespace Capstone.Web.Controllers
         //GET: 
         public ActionResult FiveDayForecast()
         {
-            return View();
+            List<Forecast> results = new List<Forecast>();
+
+            IForecastDAL dal = new ForecastSQLDAL(connectionString);
+
+            results = dal.GetForecasts("ENP");
+
+            return View(results);
         }
     }
 }
