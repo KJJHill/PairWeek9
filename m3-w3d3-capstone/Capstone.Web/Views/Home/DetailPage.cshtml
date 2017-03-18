@@ -6,15 +6,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string imagesource = "/Content/img/parkimages/" + Model.ParkCode + ".jpg";
 }
-
-<h2>DetailPage</h2>
-
+<div align ="center">
+    <font size="250" color="white">@Model.ParkName, @Model.State</font>
+</div>
 <table>
     <tr>
         <td><img src=@imagesource /></td>
         <td>
             <ul style="list-style: none">
-                <li><h2>@Html.ActionLink(@Model.ParkName + ", " + @Model.State, "DetailPage", "Home", new { parkCode = Model.ParkCode })</h2></li>
                 <li>@Model.Description</li>
                 <li></li>
                 <li>Park Acreage: @Model.Acreage, Park Elevation: @Model.Elevation, Miles of Trail: @Model.MilesOfTrail</li>
@@ -29,7 +28,8 @@
 
 </table>
 
-<div class="forecasts">
+<div class="forecasts" align ="center">
+    <h2>5 Day Forecast</h2>
     <table>
         @foreach (Forecast f in Model.FiveDayForecasts)
         {

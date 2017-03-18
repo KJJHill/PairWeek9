@@ -133,8 +133,6 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\ForecastSQLDAL.cs" />
-    <Compile Include="DAL\IForecastDAL.cs" />
     <Compile Include="DAL\IParkDAL.cs" />
     <Compile Include="DAL\ISurveyDAL.cs" />
     <Compile Include="DAL\ParkSQLDAL.cs" />
