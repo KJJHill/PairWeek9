@@ -5,17 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DailySurvey</h2>
+<h2>Daily Survey</h2>
 
-@using (Html.BeginForm("SurveyResults","Home"))
+@using (Html.BeginForm("SurveyResults", "Home"))
 {
+    <table align="center">
 
-    Html.Label("Favorite Park");
-    //Html.DropDownList("FavoritePark", m => m.ParkName);
-    <select name="activitylevel">
-        <option value="inactve">Inactive</option>
-        <option value= "sedentary">Sedentary</option>
-        <option value="active">Active</option>
-        <option value="extremelyactive">Extremely Active</option>
-    </select>
+        <tr>
+            <td>@Html.Label("Which park is your favorite park?")</td>
+            <td>@Html.DropDownList("FavoritePark", (List<SelectListItem>)ViewBag.ParkNames, new { style = "font-size:100%;" })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("What activity level are you currently enjoying?")</td>
+            <td>@Html.DropDownList("activityLevel", (List<SelectListItem>)ViewBag.ActivityLevels, new { style = "font-size:100%;" })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Which State are you traveling from?")</td>
+            <td>@Html.DropDownList("state", (List<SelectListItem>)ViewBag.StateNames, new { style = "font-size:100%;" })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Please enter your email address:")</td>
+            <td>@Html.TextBox("email")</td>
+        </tr>
+    </table>
+
+    <div align="center">
+        <input value="Submit" type="submit" />
+    </div>
 }

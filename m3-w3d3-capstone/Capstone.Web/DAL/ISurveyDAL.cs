@@ -12,5 +12,7 @@ namespace Capstone.Web.DAL
         List<Survey> GetAllSurveys();
 
         bool SaveSurvey(Survey survey);
+
+        string GetWinningParkName();
     }
 }

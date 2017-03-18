@@ -13,7 +13,5 @@ namespace Capstone.Web.DAL
 
         List<Park> GetAllParks();
 
-        List<string> GetParkNames();
-
     }
 }

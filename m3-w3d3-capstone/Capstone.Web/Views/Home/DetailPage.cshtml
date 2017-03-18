@@ -29,18 +29,19 @@
 
 </table>
 
-<table>
-
-    @foreach (Forecast f in Model.FiveDayForecasts)
-    {
-        <tr>
-            <td>Day @f.DayNumber</td>
-            <td><img src="@f.ImagePath"/></td>
-            <td>Low @f.LowTemperature / High @f.HighTemperature</td>
-            <td></td>
-            <td>@f.ForecastAdvice</td>
-        </tr>
-    }
-
-
-</table>
+<div class="forecasts">
+    <table>
+        @foreach (Forecast f in Model.FiveDayForecasts)
+        {
+            <tr>
+                <td>Day @f.DayNumber</td>
+                <td><img src="@f.ImagePath" /></td>
+                <td>
+                    Low @f.LowTemperature / High @f.HighTemperature
+                    <br />
+                    @f.ForecastAdvice
+                </td>
+            </tr>
+        }
+    </table>
+</div>

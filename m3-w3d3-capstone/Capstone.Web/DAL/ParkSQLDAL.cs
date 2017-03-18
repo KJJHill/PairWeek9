@@ -12,7 +12,6 @@ namespace Capstone.Web.DAL
         private string SQL_GetAllForecasts = "Select * from weather where parkCode = @parkCode;";
         string SQL_GetParkDetails = "SELECT * FROM park where parkCode = @parkCode;";
         string SQL_GetALLParks = "SELECT * FROM park;";
-        string SQL_GetParkNames = "SELECT parkName FROM park;";
         private string connectionString;
 
 
@@ -120,35 +119,5 @@ namespace Capstone.Web.DAL
 
             return results;
         }
-
-        public List<string> GetParkNames()
-        {
-            List<string> results = new List<string>();
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand(SQL_GetParkNames, conn);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        results.Add(Convert.ToString(reader["parkName"]));
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                //Log and throw the exception
-                throw new NotImplementedException();
-            }
-
-            return results;
-        }
-
     }
 }

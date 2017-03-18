@@ -11,7 +11,8 @@ namespace Capstone.Web.DAL
     {
         private string SQL_GetAllSurveys = "Select surveyId, park.parkCode, emailAddress, park.state, activityLevel, parkName from survey_result join park ON park.parkCode = survey_result.parkCode";
         private string SQL_SaveSurvey = "Insert into survey_result (parkCode, emailAddress, state, activityLevel) values (@parkCode, @emailAddress, @state, @activityLevel);";
-
+        private string SQL_GetSurveyWinnerParkCode = "select top 1 Count(parkCode) as pcCount, parkCode from survey_result group by parkCode order by pcCount desc;";
+        private string SQL_GetSurveyWinnerParkName = "select parkName from park where parkCode = @parkCode";
         private string connectionString;
 
         public SurveySQLDAL(string databaseConnectionString)
@@ -83,6 +84,44 @@ namespace Capstone.Web.DAL
             }
 
             return result;
+        }
+
+        public string GetWinningParkName()
+        {
+            string winningParkCode = "";
+            string winningParkName = "";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(SQL_GetSurveyWinnerParkCode, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        winningParkCode = Convert.ToString(reader["parkCode"]);
+                    }
+
+                    reader.Close();
+
+                    cmd = new SqlCommand(SQL_GetSurveyWinnerParkName, conn);
+                    cmd.Parameters.AddWithValue("@parkCode", winningParkCode);
+                    reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        winningParkName = Convert.ToString(reader["parkName"]);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                //Log and throw the exception
+                throw new NotImplementedException();
+            }
+
+            return winningParkName;
         }
 
     }

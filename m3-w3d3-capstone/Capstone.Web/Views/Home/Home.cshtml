@@ -6,10 +6,6 @@
 @model List<Park>
 <h2>National Parks</h2>
 
-@Html.ActionLink("Click on Forecast", "FiveDayForecast", "Home")
-
-@Html.ActionLink("Survey Results", "SurveyResults", "Home")
-
 <table>
   @foreach (Park p in Model)
   {
