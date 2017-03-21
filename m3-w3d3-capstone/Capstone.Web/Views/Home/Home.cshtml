@@ -6,18 +6,20 @@
 @model List<Park>
 <h2>National Parks</h2>
 <table>
-  @foreach (Park p in Model)
-  {
-    
-      string imagesource = "/Content/img/parkimages/"+ p.ParkCode+ ".jpg";
-      <tr>
-        <td><a href="@Url.Action("DetailPage", new { parkCode = p.ParkCode })"><img src=@imagesource /></a></td>
-        <td>
-            <ul style="list-style: none">
-                <li><h2>@Html.ActionLink(@p.ParkName+", "+@p.State, "DetailPage",new { parkCode = p.ParkCode })</h2></li>
-                <li>@p.Description</li>
-            </ul>
-        </td>
-    </tr>
-  }
+    @Html.Hidden("pageName", new  { value = "Home" })
+
+    @foreach (Park p in Model)
+    {
+
+        string imagesource = "/Content/img/parkimages/" + p.ParkCode + ".jpg";
+        <tr>
+            <td><a href="@Url.Action("DetailPage", new { parkCode = p.ParkCode })"><img src=@imagesource /></a></td>
+            <td>
+                <ul style="list-style: none">
+                    <li><h2>@Html.ActionLink(@p.ParkName + ", " + @p.State, "DetailPage", new { parkCode = p.ParkCode })</h2></li>
+                    <li>@p.Description</li>
+                </ul>
+            </td>
+        </tr>
+    }
 </table>

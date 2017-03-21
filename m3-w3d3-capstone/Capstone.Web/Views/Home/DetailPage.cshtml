@@ -6,6 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string imagesource = "/Content/img/parkimages/" + Model.ParkCode + ".jpg";
 }
+
+@Html.Hidden("pageName", new { value = "DetailPage" })
+
 <div align ="center">
     <font size="250" color="white">@Model.ParkName, @Model.State</font>
 </div>

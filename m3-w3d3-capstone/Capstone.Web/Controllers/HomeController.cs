@@ -11,7 +11,7 @@ namespace Capstone.Web.Controllers
 {
     public class HomeController : Controller
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["JRCapstoneDatabase"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["KHCapstoneDatabase"].ConnectionString;
 
         // GET: Home
         public ActionResult Home()
@@ -75,62 +75,63 @@ namespace Capstone.Web.Controllers
                     f.ImagePath = "/Content/img/weatherimages/partlycloudy.png";
                 }
 
-                if (Request["temperatureType"] != null){
-                if (Session["temperatureType"].ToString() == "Celcius")
+                if (Session["temperatureType"] != null)
+                {
+                    if (Session["temperatureType"].ToString() == "Celsius")
                     {
                         f.LowTemperature = (int)((f.LowTemperature - 32) * .5556);
                         f.HighTemperature = (int)((f.HighTemperature - 32) * .5556);
                     }
-                }            
+                }
             }
             return View(result);
         }
-    
 
-    //GET: 
-    public ActionResult DailySurvey()
-    {
 
-        IParkDAL dal = new ParkSQLDAL(connectionString);
-        List<Park> parkNames = dal.GetAllParks();
-
-        List<SelectListItem> parks = new List<SelectListItem>();
-        foreach (Park p in parkNames)
+        //GET: 
+        public ActionResult DailySurvey()
         {
-            parks.Add(new SelectListItem { Text = p.ParkName, Value = p.ParkCode });
+
+            IParkDAL dal = new ParkSQLDAL(connectionString);
+            List<Park> parkNames = dal.GetAllParks();
+
+            List<SelectListItem> parks = new List<SelectListItem>();
+            foreach (Park p in parkNames)
+            {
+                parks.Add(new SelectListItem { Text = p.ParkName, Value = p.ParkCode });
+            }
+
+            ViewBag.ParkNames = parks;
+
+            ViewBag.ActivityLevels = activityLevel;
+
+            ViewBag.StateNames = states;
+
+            return View();
+
         }
 
-        ViewBag.ParkNames = parks;
+        //GET: 
+        public ActionResult SurveyResults()
+        {
+            ISurveyDAL dal = new SurveySQLDAL(connectionString);
+            List<Survey> results = new List<Survey>();
 
-        ViewBag.ActivityLevels = activityLevel;
+            Survey s = new Survey();
+            s.ActivityLevel = (String.IsNullOrEmpty(Request["activityLevel"])) ? "Inactive" : Request["activityLevel"];
+            s.ParkCode = (String.IsNullOrEmpty(Request["FavoritePark"])) ? "" : Request["FavoritePark"];
+            s.EmailAddress = (String.IsNullOrEmpty(Request["email"])) ? "Did not provide" : Request["email"];
+            s.State = (String.IsNullOrEmpty(Request["state"])) ? "Did not provide" : Request["state"];
+            dal.SaveSurvey(s);
 
-        ViewBag.StateNames = states;
+            ViewBag.WinningPark = dal.GetWinningParkName();
 
-        return View();
+            results = dal.GetAllSurveys();
 
-    }
+            return View(results);
+        }
 
-    //GET: 
-    public ActionResult SurveyResults()
-    {
-        ISurveyDAL dal = new SurveySQLDAL(connectionString);
-        List<Survey> results = new List<Survey>();
-
-        Survey s = new Survey();
-        s.ActivityLevel = (String.IsNullOrEmpty(Request["activityLevel"])) ? "Inactive" : Request["activityLevel"];
-        s.ParkCode = (String.IsNullOrEmpty(Request["FavoritePark"])) ? "" : Request["FavoritePark"];
-        s.EmailAddress = (String.IsNullOrEmpty(Request["email"])) ? "Did not provide" : Request["email"];
-        s.State = (String.IsNullOrEmpty(Request["state"])) ? "Did not provide" : Request["state"];
-        dal.SaveSurvey(s);
-
-        ViewBag.WinningPark = dal.GetWinningParkName();
-
-        results = dal.GetAllSurveys();
-
-        return View(results);
-    }
-
-    public ActionResult TemperatureChange()
+        public ActionResult TemperatureChange()
         {
             if (Request["temperatureType"] != null)
             {
@@ -138,7 +139,12 @@ namespace Capstone.Web.Controllers
                 {
                     Session["temperatureType"] = "Celsius";
                 }
+                else
+                {
+                    Session["temperatureType"] = "Fahrenheit";
+                }
             }
+
             IParkDAL dal = new ParkSQLDAL(connectionString);
             List<Park> result = dal.GetAllParks();
             return View("Home", result);
@@ -146,7 +152,7 @@ namespace Capstone.Web.Controllers
 
 
 
-    private List<SelectListItem> activityLevel = new List<SelectListItem>
+        private List<SelectListItem> activityLevel = new List<SelectListItem>
         {
                 new SelectListItem { Text = "Inactive", Value = "Inactive" },
                 new SelectListItem { Text = "Sedentary", Value = "Sedentary" },
@@ -154,7 +160,7 @@ namespace Capstone.Web.Controllers
                 new SelectListItem { Text = "Extremely Active", Value = "Extremely Active" }
         };
 
-    private List<SelectListItem> states = new List<SelectListItem>
+        private List<SelectListItem> states = new List<SelectListItem>
         {
                 new SelectListItem { Text = "Alabama", Value = "Alabama" },
                 new SelectListItem { Text = "Alaska", Value = "Alaska" },
@@ -208,5 +214,5 @@ namespace Capstone.Web.Controllers
                 new SelectListItem { Text = "Wyoming", Value = "Wyoming" },
 
         };
-}
+    }
 }

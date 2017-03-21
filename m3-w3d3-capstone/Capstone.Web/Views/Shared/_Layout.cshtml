@@ -17,23 +17,34 @@
     </header>
     @using (Html.BeginForm("TemperatureChange", "Home"))
     {
+        bool isCelsiusChecked = false;
+        bool isFahrenheitChecked = true;
+
+        if (Session["temperatureType"] != null)
+        {
+            if (Session["temperatureType"].ToString() == "Celsius")
+            {
+                isCelsiusChecked = true;
+                isFahrenheitChecked = false;
+            }
+        }
         <nav>
             <p> Use these state of the art web applications to learn more about your National Parks! </p>
             <ul>
                 <li>@Html.ActionLink("List of Parks", "Home", "Home")</li>
                 <li>@Html.ActionLink("Daily Survey", "DailySurvey", "Home")</li>
                 <li>
-                    C: @Html.RadioButton("temperatureType", "Celsius")
+                    C: @Html.RadioButton("temperatureType", "Celsius", isCelsiusChecked)
                     <input value="Change" type="submit" />
-                    F: @Html.RadioButton("temperatureType", "Fahrenheit")
-                   
+                    F: @Html.RadioButton("temperatureType", "Fahrenheit", isFahrenheitChecked)
                 </li>
             </ul>
         </nav>
     }
+@ViewBag.Title
+
     <section class="centeredPanel">
         @RenderBody()
     </section>
-
 </body>
 </html>
