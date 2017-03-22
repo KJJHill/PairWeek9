@@ -10,7 +10,7 @@
 @Html.Hidden("pageName", new { value = "DetailPage" })
 
 <div align ="center">
-    <div id ="pageHeader">@Model.ParkName, @Model.State</></div>
+    <h2 id ="pageHeader">@Model.ParkName, @Model.State</></h2>
 </div>
 <table>
     <tr>
@@ -33,7 +33,7 @@
 </table>
 
 <div class="forecasts" align ="center">
-    <h2>5 Day Forecast</h2>
+    <h2 id="pageHeader">5 Day Forecast</h2>
     <table>
         @foreach (Forecast f in Model.FiveDayForecasts)
         {
