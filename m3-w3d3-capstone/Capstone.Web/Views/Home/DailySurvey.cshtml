@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Daily Survey</h2>
+<h2 id="pageHeader">Daily Survey</h2>
 
 @using (Html.BeginForm("SurveyResults", "Home"))
 {
@@ -30,6 +30,6 @@
     </table>
 
     <div align="center">
-        <input value="Submit" type="submit" />
+        <input value="Submit" type="submit" id="inputButton"/>
     </div>
 }

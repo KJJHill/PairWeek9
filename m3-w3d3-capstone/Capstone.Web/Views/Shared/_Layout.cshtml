@@ -11,39 +11,42 @@
 </head>
 
 <body>
+   
+        <nav>
+            @using (Html.BeginForm("TemperatureChange", "Home"))
+            {
+                bool isCelsiusChecked = false;
+                bool isFahrenheitChecked = true;
+
+                if (Session["temperatureType"] != null)
+                {
+                    if (Session["temperatureType"].ToString() == "Celsius")
+                    {
+                        isCelsiusChecked = true;
+                        isFahrenheitChecked = false;
+                    }
+                }
+                <ul>
+                    <li>@Html.ActionLink("List of Parks", "Home", "Home")</li>
+                    <li>@Html.ActionLink("Daily Survey", "DailySurvey", "Home")</li>
+                    <li>
+                        C: @Html.RadioButton("temperatureType", "Celsius", isCelsiusChecked)
+                        <input id="inputButton" value="Change" type="submit" />
+                        F: @Html.RadioButton("temperatureType", "Fahrenheit", isFahrenheitChecked)
+                    </li>
+                </ul>
+            }
+        </nav>
+        
+        @*<h1 id="layoutHeaderText">Explore the National Park Weather System</h1>*@
+
     <header>
         <img src="~/Content/img/logo.png" alt="National Park Weather logo" />
-        <h1 id="layoutHeaderText">Explore the National Park Weather System</h1>
     </header>
-    @using (Html.BeginForm("TemperatureChange", "Home"))
-    {
-        bool isCelsiusChecked = false;
-        bool isFahrenheitChecked = true;
 
-        if (Session["temperatureType"] != null)
-        {
-            if (Session["temperatureType"].ToString() == "Celsius")
-            {
-                isCelsiusChecked = true;
-                isFahrenheitChecked = false;
-            }
-        }
-        <nav>
-       
-            <ul>
-                <li>@Html.ActionLink("List of Parks", "Home", "Home")</li>
-                <li>@Html.ActionLink("Daily Survey", "DailySurvey", "Home")</li>
-                <li>
-                    C: @Html.RadioButton("temperatureType", "Celsius", isCelsiusChecked)
-                    <input id="inputButton" value="Change" type="submit" />
-                    F: @Html.RadioButton("temperatureType", "Fahrenheit", isFahrenheitChecked)
-                </li>
-            </ul>
-        </nav>
-    }
- 
     
     <section class="centeredPanel">
+       
         @RenderBody()
     </section>
 </body>

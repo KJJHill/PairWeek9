@@ -5,16 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Survey Results</h2>
-<h2>Congratulations <font color="white">@ViewBag.WinningPark </font> you are our favorite National Park!</h2>
+<h2 id="pageHeader">Survey Results</h2>
+<h2 style="color: darkblue">Congratulations <font color="white">@ViewBag.WinningPark </font> you are our favorite National Park!</h2>
 
 <div align="center">
     <table>
         <tr>
-            <th width="25%" align="left">Favorite Park</th>
-            <th width="25%" align="left">Email Address</th>
-            <th width="25%" align="left">Home State</th>
-            <th width="25%" align="left">Activity Level</th>
+            <th style="color: darkblue"; width="35%" align="left">Favorite Park</th>
+            <th style="color: darkblue"; width="25%" align="left">Email Address</th>
+            <th style="color: darkblue"; width="20%" align="left">Home State</th>
+            <th style="color: darkblue"; width="20%" align="left">Activity Level</th>
         </tr>
         @foreach (Survey s in Model)
         {
