@@ -10,18 +10,19 @@
 @Html.Hidden("pageName", new { value = "DetailPage" })
 
 <div align ="center">
-    <font size="250" color="white">@Model.ParkName, @Model.State</font>
+    <div id ="detailParkName">@Model.ParkName, @Model.State</></div>
 </div>
 <table>
     <tr>
         <td><img src=@imagesource /></td>
         <td>
             <ul style="list-style: none">
+                <li></li>
                 <li>@Model.Description</li>
                 <li></li>
                 <li>Park Acreage: @Model.Acreage, Park Elevation: @Model.Elevation, Miles of Trail: @Model.MilesOfTrail</li>
                 <li>Number of Campsites: @Model.NumberOfCampsite, Year Founded: @Model.YearFounded, Annual Visitors: @Model.AnnualVisitors</li>
-                <li>Climate: @Model.Climate, Entry $: @Model.EntryFee, Number of Species: @Model.NumberOfAnimalSpecies</li>
+                <li>Climate: @Model.Climate, Entry Cost $: @Model.EntryFee, Number of Species: @Model.NumberOfAnimalSpecies</li>
                 <li></li>
                 <li><strong>Quote:</strong> @Model.Quote ~ @Model.QuoteSource</li>
 

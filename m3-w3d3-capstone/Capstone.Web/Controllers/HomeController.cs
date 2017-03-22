@@ -11,7 +11,7 @@ namespace Capstone.Web.Controllers
 {
     public class HomeController : Controller
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["KHCapstoneDatabase"].ConnectionString;
+        string connectionString = ConfigurationManager.ConnectionStrings["JRCapstoneDatabase"].ConnectionString;
 
         // GET: Home
         public ActionResult Home()
